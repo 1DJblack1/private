@@ -1,0 +1,43 @@
+using System;
+
+class Program
+{
+    static void Main(string[] args)
+    {
+        Random random = new Random();
+        int secretNumber = random.Next(1, 101);  // Generates a random number between 1 and 100.
+        int attempts = 0;
+
+        Console.WriteLine("Welcome to Guess the Number!");
+        Console.WriteLine("I'm thinking of a number between 1 and 100.");
+
+        while (true)
+        {
+            Console.Write("Enter your guess: ");
+            string userInput = Console.ReadLine();
+            int userGuess;
+
+            if (int.TryParse(userInput, out userGuess))
+            {
+                attempts++;
+                if (userGuess > secretNumber)
+                {
+                    Console.WriteLine("Too high! Try again.");
+                }
+                else if (userGuess < secretNumber)
+                {
+                    Console.WriteLine("Too low! Try again.");
+                }
+                else
+                {
+                    Console.WriteLine($"Congratulations! You've found the number {secretNumber} in {attempts} attempts.");
+                    break;
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a number.");
+            }
+        }
+    }
+}
